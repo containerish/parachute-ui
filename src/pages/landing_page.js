@@ -40,23 +40,18 @@ function LandingPage() {
         let body = {
             "email": email
         }
-       axios.post('http://0.0.0.0:5000/beta/register',body)
+
+		axios.post('https://beta.openregistry.dev/beta/register', body)
            .then(response => {
-               console.log(response.data,response.status)
-               setEmail("")
                setResp(response.data.message)
                setIsError(false)
-               // setShowBeta(false)
            }).catch(err => {
                setIsError(true)
-               setResp(err.response)
-               console.log("error %s",err.response)
+               setResp(err.response.data.message)
        })
     }
     const handleEmail = async (e) => {
-        console.log(e.target.value)
         await setEmail(e.target.value)
-        console.log("email: %s", e.target.value)
         validateEmail(e.target.value)
     }
 
@@ -86,9 +81,9 @@ function LandingPage() {
                 <img className="animated-logo" alt="parachute logo" src={parachute}/>
                 <h1>Parachute by Open Registry</h1>
                 <p>A decentralised container registry fully compliant with OCI Distribution Specification
-                    Which means now you can use all the features of existing container registries on blockchain
+                    which means now you can use all the features of existing container registries on OpenRegistry.
                     We are hosted on Akash and powered by SkyNet.
-                    You see Sky is the limit, like literally!</p>
+                    You see, Sky is the limit. Like literally!</p>
                 <OutlinedButton onClick={() => handleBeta()} label="Register for Beta"/>
                 {
                     showBeta ? <Beta isError={isError} type={"email"} errMsg={resp} onChange={handleEmail} onClick={() => handleSubmit()}/> :null

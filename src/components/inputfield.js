@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             margin: theme.spacing(1),
         },
+        width: '100%'
     },
     label: {
         fontSize: 20,
@@ -32,6 +33,7 @@ const BootstrapInput = withStyles((theme) => ({
         'label + &': {
             marginTop: theme.spacing(4),
         },
+        width: '100%'
     },
     input: {
         borderRadius: 8,
@@ -39,7 +41,7 @@ const BootstrapInput = withStyles((theme) => ({
         backgroundColor: "#ced4da",
         border: '2px solid #ced4da',
         fontSize: 16,
-        //width: 'auto',
+        width: '100%',
         height: "28px",
         padding: '10px 12px',
         transition: theme.transitions.create(['border-color', 'box-shadow']),
@@ -57,9 +59,7 @@ export const TxtField = ({type, isError, errMsg, label, onChange}) => {
 
     const classes = useStyles();
     return <FormControl className={classes.root}>
-        <InputLabel className={classes.label} classes={{
-            focused: classes.focused
-        }} shrink htmlFor="bootstrap-input">
+        <InputLabel className={classes.label} classes={{focused: classes.focused}} shrink htmlFor="bootstrap-input">
             {label}
         </InputLabel>
         <BootstrapInput type={type} onChange={(event) => onChange(event)} id="bootstrap-input" />

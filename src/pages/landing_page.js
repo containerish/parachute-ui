@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactDOM from 'react-dom';
 import '../styles/landingpage.css'
 import parachute from "../styles/pictures/parachute.png"
+import akashLogo from "../styles/pictures/akash.svg"
+import skynetLogo from "../styles/pictures/skynetlogo.png"
 import {OutlinedButton, SolidButton} from "../components/buttons";
 import SignUp from "../components/signup";
 import SignIn from "../components/signin";
@@ -84,10 +86,15 @@ function LandingPage() {
                     which means now you can use all the features of existing container registries on OpenRegistry.
                     We are hosted on Akash and powered by SkyNet.
                     You see, Sky is the limit. Like literally!</p>
-                <OutlinedButton onClick={() => handleBeta()} label="Register for Beta"/>
-                {
-                    showBeta ? <Beta isError={isError} type={"email"} errMsg={resp} onChange={handleEmail} onClick={() => handleSubmit()}/> :null
-                }
+                    <OutlinedButton onClick={() => handleBeta()} label="Register for Beta"/>
+                    {
+                        showBeta ? <Beta isError={isError} type={"email"} errMsg={resp} onChange={handleEmail} onClick={() => handleSubmit()}/> :null
+                    }
+
+                <div style={{display:"flex",justifyContent:"center",width:"100%",alignItems:"center"}}>
+                    <img style={{"width":200}} src={akashLogo} alt={""}/>
+                    <img style={{"width":200}} src={skynetLogo} alt={""}/>
+                </div>
             </div>
             {
                 showSignUp ?

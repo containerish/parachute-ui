@@ -8,15 +8,11 @@ import {TxtField} from "./inputfield"
 
 function Beta({type, isError, errMsg, onClick, onChange}) {
     return (
-        <div className="beta">
-            <form className="formStyle">
-                <TxtField isError={isError} type={type} errMsg={errMsg} onChange={onChange} label="Email" variant="outlined" />
-                <div className="bottom"> &nbsp;
-                    <SolidButton2 disabled={isError} onClick={onClick} label= "Submit"/>
-                </div>
-            </form>
-        </div>
-
+        <form className="formStyle">
+            <TxtField isError={isError} type={type} errMsg={errMsg} onChange={onChange} label="Email" variant="outlined" />
+            <div style={{ width: '5%'}}/>
+            <SolidButton2 disabled={isError} onClick={onClick} label= "Submit"/>
+        </form>
     );
 }
 

@@ -158,10 +158,12 @@
     background: linear-gradient(#617794,#A4C7D2);
 }
 .beta {
-
-    width: 30%;
+    width: 100%;
     padding: 20px;
-
+    /*flex-direction: row;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .winHead {
@@ -252,9 +254,14 @@ span {
 
 .formStyle {
     display: flex;
-    flex-direction: column;
-    padding: 3%;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+    /*align-items: center;*/
+    border-spacing: 10px;
+    width: 60%;
+    max-width: 42%;
+    /*padding: 0 10px;*/
+    /*justify-content: space-between;*/
 }
 .textField {
     border: hotpink solid 5px;

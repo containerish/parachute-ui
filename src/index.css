@@ -1,4 +1,5 @@
 body {
+  overflow: hidden;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +11,32 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/*.ant-menu-item-active {*/
+/*  color: pink !important;*/
+/*  border-bottom-color: #fff !important;*/
+/*}*/
+
+/*.ant-menu-item-selected {*/
+/*  color: pink !important;*/
+/*  border-bottom: 4px solid red !important;*/
+/*}*/
+
+.ant-menu-item:hover::after {
+    border-bottom: #fff solid 0 !important;
+}
+
+.ant-card-body {
+  padding: 1% 2%;
+}
+
+.ant-modal-content {
+  position: relative;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+  pointer-events: auto;
 }

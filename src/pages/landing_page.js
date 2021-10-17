@@ -26,14 +26,14 @@ function LandingPage() {
     const [showNotification, setShowNotification] = useState(false)
 
     const handleSignIn = () => {
-        setShowNotification(true)
-        // setShowSignUp(false)
-        // setShowSignIn(!showSignIn)
+        // setShowNotification(true)
+        setShowSignUp(false)
+        setShowSignIn(!showSignIn)
     }
     const handleSignUp = () => {
-        setShowNotification(true)
-        // setShowSignIn(false)
-        // setShowSignUp(!showSignUp)
+        // setShowNotification(true)
+        setShowSignIn(false)
+        setShowSignUp(!showSignUp)
     }
     const handleBeta = () => {
         setShowBeta(!showBeta)
@@ -76,8 +76,8 @@ function LandingPage() {
     return (
         <div className={"header"}>
             <div className="headdiv">
-                <SolidButton label={"SignIn"} onClick={() => handleSignIn()}/>
-                <SolidButton label={"SignUp"} onClick={() => handleSignUp()}/>
+                <SolidButton label={"Sign In"} onClick={() => handleSignIn()}/>
+                <SolidButton label={"Sign Up"} onClick={() => handleSignUp()}/>
             </div>
             <div className="text">
                 <img className="animated-logo" alt="parachute logo" src={parachute}/>
@@ -99,14 +99,14 @@ function LandingPage() {
             {
                 showSignUp ?
                     <CustomModal close={handleSignUp} show={showSignUp}>
-                        <SignUp/>
+                        <SignUp handleSignIn={handleSignIn} handleModalClose={handleSignUp}/>
                     </CustomModal>
                 : null
             }
             {
                 showSignIn ?
                 <CustomModal close={handleSignIn} show={showSignIn}>
-                    <SignIn/>
+                    <SignIn handleModalClose={handleSignIn} handleSignUp={handleSignUp}/>
                 </CustomModal>
                 : null
             }
@@ -120,7 +120,6 @@ function LandingPage() {
                 <MuiAlert
                     onClose={handleNotificationClose}
                     severity={"info"}
-                    // elevation={1}
                     >
                     <AlertTitle> Coming Soon! </AlertTitle>
                 </MuiAlert>

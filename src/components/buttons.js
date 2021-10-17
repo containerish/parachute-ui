@@ -84,9 +84,7 @@ export const OutlinedButton = ({label, onClick}) => {
 export const SolidButton = ({label, onClick}) => {
     const classes = useStyles();
     return (
-        <HtmlTooltip title={"Coming Soon!"} arrow={true}>
-        <Button className={classes.solidButtonStyle} onClick={() =>{}} variant="contained">{label}</Button>
-        </HtmlTooltip>
+        <Button className={classes.solidButtonStyle} onClick={() =>onClick()} variant="contained">{label}</Button>
     )
 }
 export const SolidButton2 = ({disabled, label, onClick}) => {

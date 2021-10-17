@@ -7,8 +7,10 @@
 .bg{
     min-height: 100vh;
     width: 100%;
+    background-image: url("./pictures/bg.svg");
+    background-position: center;
     background-size: cover;
-    background: linear-gradient(rgba(32, 45, 62, 0.99), #677c95) no-repeat center;
+    background-repeat: no-repeat;
     -webkit-background-size: 100% 100%;
 }
 

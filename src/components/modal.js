@@ -1,18 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import {Button, Modal} from 'antd';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'baseline',
-        paddingTop: theme.spacing(10),
-        paddingRight: theme.spacing(2),
-        justifyContent: 'flex-end',
-        // left: 'auto !important'
-    },
     paper: {
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
@@ -24,27 +16,25 @@ const useStyles = makeStyles((theme) => ({
         left: 'auto'
     }
 }));
+
+const styles = {
+    modal: {
+        width: "100% !important",
+    }
+}
 export const CustomModal = ({ children, show, close }) => {
-    const classes = useStyles();
 
     return (
-        <div>
-            <Modal
-                className={classes.modal}
-                open={show}
-                onClose={close}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Fade in={show}>
-                    {children}
-                </Fade>
-            </Modal>
-        </div>
+        <Modal
+            style={styles.modal}
+            visible={show}
+            onOk={close}
+            closable={false}
+            onCancel={close}
+            footer={null}
+        >
+            {children}
+        </Modal>
     );
 }
 
-// export default CustomModal;

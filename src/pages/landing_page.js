@@ -80,9 +80,9 @@ function LandingPage() {
                 <SolidButton label={"Sign Up"} onClick={() => handleSignUp()}/>
             </div>
             <div className="text">
-                <img className="animated-logo" alt="parachute logo" src={parachute}/>
+                {/*<img className="animated-logo" alt="parachute logo" src={parachute}/>*/}
                 <h1>Parachute by Open Registry</h1>
-                <p>A decentralised container registry fully compliant with OCI Distribution Specification
+                <p style={{color: "black", fontWeight: "bold"}}>A decentralised container registry fully compliant with OCI Distribution Specification
                     which means now you can use all the features of existing container registries on OpenRegistry.
                     We are hosted on Akash and powered by SkyNet.
                     You see, Sky is the limit. Like literally!</p>

@@ -6,7 +6,7 @@ import {
     Link
 } from "react-router-dom";
 import PersonalDashboard from "../pages/dashboard";
-import LandingPage from "../pages/landing_page";
+import LandingPage from "../pages/landingPage";
 import NavBar from "../components/menu";
 import {ImageDetail} from "../pages/image_detail";
 import ExploreContainerImages from "../pages/explore";

@@ -259,13 +259,14 @@ span {
 
 .formStyle {
     display: flex;
+    /*flex-direction: column;*/
     flex-direction: row;
     justify-content: center;
     /*align-items: center;*/
     border-spacing: 10px;
     width: 60%;
     max-width: 42%;
-    /*padding: 0 10px;*/
+    padding-top: 2%;
     /*justify-content: space-between;*/
 }
 .textField {
@@ -288,6 +289,11 @@ span {
 .ant-row-rtl #components-layout-demo-top .logo {
     float: right;
     margin: 16px 0 16px 24px;
+}
+
+.ant-btn-primary:hover {
+    background: #88a4c2;
+    border-color: #88a4c2;
 }
 
 

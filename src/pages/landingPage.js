@@ -70,7 +70,7 @@ function LandingPage() {
 			"email": email
 		}
 
-		axios.post('https://beta.openregistry.dev/beta/register', body)
+		axios.post(`${REACT_APP_API_BASE_URL}/beta/register`, body)
 			.then(response => {
 				setResp(response.data.message)
 				setIsError(false)

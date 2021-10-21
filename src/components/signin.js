@@ -1,27 +1,32 @@
 import React, { useState } from "react";
 import '../styles/landingpage.css'
-import { OutlinedButton, SolidButton, SolidButton2 } from "./buttons";
-import { TxtField } from "./inputfield"
-import { Form, Input, Button, Typography, Spin } from 'antd';
-import { LoadingOutlined, CheckCircleTwoTone, CloseCircleOutlined } from '@ant-design/icons';
-import { useHistory, useLocation } from "react-router";
+import { Form, Input, Button, Typography, message, Alert } from 'antd';
+import { LoadingOutlined, CheckCircleTwoTone, CloseCircleOutlined, } from '@ant-design/icons';
+import { useHistory, } from "react-router";
+import axios from 'axios';
 
-const SignIn = ({ handleSignUp, handleModalClose }) => {
+message.config({
+	icon: null,
+})
+
+const SignIn = ({ handleSignUp, handleModalClose, }) => {
 	const [showVerifyLoader, setShowVerifyLoader] = useState(false)
 	const [emailVerified, setEmailVerified] = useState(false)
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [showLoader, setShowLoader] = useState(false);
+	const [showNotification, setShowNotification] = useState(false);
+	const [signInError, setSignInError] = useState('');
 
 	let loc = useHistory()
-	const SignIn = () => {
-		setTimeout(() => {
-			loc.push("/repositories")
-		}, 2000)
+
+	const handleEmail = (input) => {
+		setEmail(input)
 	}
 
-	const handleCancel = () => {
-
+	const handlePassword = (input) => {
+		setPassword(input)
 	}
-	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
-
 
 	const handleVerifyEmail = () => {
 		setShowVerifyLoader(true)
@@ -31,21 +36,43 @@ const SignIn = ({ handleSignUp, handleModalClose }) => {
 		}, 2000)
 	}
 
-	const showEmailVerification = () => {
-		if (!showVerifyLoader) {
-			return <Button onClick={handleVerifyEmail} >Verify</Button>
-		} else if (emailVerified) {
-			return <CheckCircleTwoTone twoToneColor="#52c41a" />
-		} else {
-			return <CloseCircleOutlined twoToneColor="red" />
-		}
+	const notify = (kind, msg) => {
+		setShowNotification(false)
+		return message[kind]({
+			content: <Alert
+				message={msg}
+				type={kind}
+				closable={false}
+				icon={null}
+			/>,
+			duration: 2,
+		})
 	}
+
+	const handleUserSignin = () => {
+		setShowLoader(true)
+		const body = {
+			email: email,
+			password: password,
+		}
+
+		axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/signin`, body).then(res => {
+			localStorage.setItem('token', res.data.token)
+			localStorage.setItem('issued_at', res.data.issued_at)
+			localStorage.setItem('expires_in', res.data.expires_in)
+			setShowLoader(false)
+			loc.push('/repositories')
+		}).catch(err => {
+			setShowLoader(false)
+			setSignInError(err.response.data.error)
+			setShowNotification(true)
+		})
+	}
+
 	const [form] = Form.useForm();
 
 	return (
-		<div
-			style={{ borderRadius: 12, }}
-		>
+		<div style={{ borderRadius: 12, }} >
 			<Form
 				layout="vertical"
 				form={form}
@@ -54,7 +81,7 @@ const SignIn = ({ handleSignUp, handleModalClose }) => {
 				style={{ borderRadius: 12, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 5%" }}
 			>
 				<Form.Item>
-					<Typography.Title style={{ width: "100%", display: "flex", justifyContent: "center" }} level={2}>Sign up for OpenRegistry</Typography.Title>
+					<Typography.Title style={{ width: "100%", display: "flex", justifyContent: "center" }} level={2}>Sign in to OpenRegistry</Typography.Title>
 				</Form.Item>
 				<Form.Item
 					style={{ fontWeight: "bold" }}
@@ -66,7 +93,12 @@ const SignIn = ({ handleSignUp, handleModalClose }) => {
 							message: "email cannot be empty",
 						}
 					]}>
-					<Input type="email" placeholder="email" />
+					<Input
+						type="email"
+						value={email}
+						onChange={(e) => handleEmail(e.target.value)}
+						placeholder="email/username"
+					/>
 				</Form.Item>
 				<Form.Item
 					label={"Password"}
@@ -78,13 +110,20 @@ const SignIn = ({ handleSignUp, handleModalClose }) => {
 							message: "invalid password",
 						}
 					]}>
-					<Input.Password placeholder="password" />
+					<Input.Password
+						value={password}
+						onChange={(e) => handlePassword(e.target.value)}
+						placeholder="password"
+					/>
 				</Form.Item>
 				<Form.Item {...tailLayout}>
 					<Button
-						onClick={() => handleSignUp()}
+						onClick={handleUserSignin}
+						icon={showLoader ? <LoadingOutlined /> : null}
 						style={{ marginRight: "2%", borderRadius: 8, fontWeight: "bold" }} type={"primary"} htmlType={"submit"}>
-						Sign In
+						<Typography.Text style={{ fontWeight: "bold", color: "#fff" }}>
+							Sign In
+						</Typography.Text>
 					</Button>
 					<Button
 						style={{ marginRight: "2%", borderRadius: 8 }}
@@ -96,6 +135,7 @@ const SignIn = ({ handleSignUp, handleModalClose }) => {
 						</Typography.Text>
 					</Button>
 				</Form.Item>
+				{showNotification ? notify('error', signInError) : null}
 				{
 					// <Form.Item {...tailLayout}>
 					//     <Typography.Text>

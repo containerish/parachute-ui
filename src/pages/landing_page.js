@@ -43,7 +43,7 @@ function LandingPage() {
 			"email": email
 		}
 
-		axios.post(`${REACT_APP_API_BASE_URL}/beta/register`, body)
+		axios.post(`${process.env.REACT_APP_API_BASE_URL}/beta/register`, body)
 			.then(response => {
 				setResp(response.data.message)
 				setIsError(false)

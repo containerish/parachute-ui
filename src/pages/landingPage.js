@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/landingpage.css'
 import bg from "../styles/pictures/newbg.png"
 import akashLogo from "../styles/pictures/akash.svg"
@@ -10,6 +10,8 @@ import Beta from "../components/beta";
 import axios from 'axios';
 import { Space, Typography, Layout, Button, Alert, message } from 'antd';
 import { GithubOutlined, UserOutlined } from '@ant-design/icons';
+import { IsTokenValid } from "../router/router";
+import { useHistory } from "react-router";
 
 const { Content, Footer } = Layout;
 
@@ -46,6 +48,13 @@ function LandingPage() {
 	const [notificationKind, setNotificationKind] = useState('error');
 	const [notificationMsg, setNotificationMsg] = useState('Email cannot be empty');
 
+	const hist = useHistory()
+	useEffect(() => {
+		if (IsTokenValid()) {
+			hist.push('/repositories')
+		}
+	})
+
 	const handleSignIn = () => {
 		// setShowNotification(true)
 		setShowSignUp(false)
@@ -70,7 +79,7 @@ function LandingPage() {
 			"email": email
 		}
 
-		axios.post(`${REACT_APP_API_BASE_URL}/beta/register`, body)
+		axios.post(`${process.env.REACT_APP_API_BASE_URL}/beta/register`, body)
 			.then(response => {
 				setResp(response.data.message)
 				setIsError(false)
@@ -156,7 +165,7 @@ function LandingPage() {
 				{
 					showSignIn ?
 						<CustomModal close={handleSignIn} show={showSignIn}>
-							<SignIn handleModalClose={handleSignIn} handleSignUp={handleSignUp} />
+							<SignIn handleModalClose={handleSignIn} handleSignUp={handleSignUp} noitfy={() => notify()} />
 						</CustomModal>
 						: null
 				}

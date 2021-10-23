@@ -16,23 +16,17 @@ export const ParachuteUIRouter = () => {
 	return (
 		<Router>
 			<Switch>
-				<Route path="/repositories">
-					<AuthRoute>
-						<PersonalDashboard />
-					</AuthRoute>
-				</Route>
-				<Route path={"/details/:username/:imagename"}>
-					<Wrapper>
-						<ImageDetail />
-					</Wrapper>
-				</Route>
-				<Route path="/explore">
-					<Wrapper>
-						<ExploreContainerImages />
-					</Wrapper>
-				</Route>
-				<Route path="/login" component={LandingPage} />
-				<Route path="/profile" />
+				<AuthRoute path="/repositories">
+					<PersonalDashboard />
+				</AuthRoute>
+				<AuthRoute path={"/details/:username/:imagename"}>
+					<ImageDetail />
+				</AuthRoute>
+				<AuthRoute path="/explore">
+					<ExploreContainerImages />
+				</AuthRoute>
+				{/*<Route path="/login" component={LandingPage} />*/}
+				{/*<Route path="/profile" />*/}
 				<Route path="/" component={LandingPage} />
 			</Switch>
 		</Router>
@@ -43,7 +37,7 @@ const Wrapper = ({ children, ...rest }) => {
 	return (
 		<Route
 			{...rest}
-			render={({ location }) =>
+			render={() =>
 				<React.Fragment>
 					<NavBar />
 					{children}
@@ -60,11 +54,7 @@ export const IsTokenValid = () => {
 	}
 	const decoded = jwt_decode(token)
 
-	if (decoded.exp * 1000 > new Date().getTime()) {
-		return true
-	}
-
-	return false
+	return decoded.exp * 1000 > new Date().getTime();
 }
 
 const AuthRoute = ({ children, ...rest }) => {

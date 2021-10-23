@@ -185,7 +185,7 @@ export const CustomButton = (
 		case "solid":
 			return <Button icon={icon} onClick={onClick} disabled={disabled} size={size} type="primary">{label}</Button>
 		case "outlined":
-			return <Button icon={icon} onClick={onClick} disabled={disabled} style={{ borderRadius: 10, "&:hover": { backgroundColor: "pink" } }} size={size} type="primary">{label}</Button>
+			return <Button icon={icon} onClick={onClick} disabled={disabled} size={size} type="primary">{label}</Button>
 		default:
 			return <Button onClick={onClick} disabled={disabled} style={{ width: "100%" }} size={size} type="primary">{label}</Button>
 	}

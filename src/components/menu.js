@@ -9,9 +9,9 @@ import { useHistory } from "react-router";
 
 const styles = {
 	border: {
-		borderBottomColor: "red",
 		fontWeight: "bold",
-		border: 'none'
+		border: 'none',
+		color: "#fff"
 	},
 	autoComplete: {
 		width: "35%",
@@ -19,15 +19,24 @@ const styles = {
 	},
 	menuStyle: {
 		display: "flex",
-		justifyContent: "space-between",
+		justifyContent: "space-around",
 		alignItems: "center",
 		backgroundColor: "rgba(152,171,196,0.98)",
 	},
 	navButtonStyle: {
 		color: "black",
 		fontWeight: 600,
-	}
+	},
+	activeNavItemStyle: {
+		color: "#fff",
+		fontWeight: 600,
+		backgroundColor: "#7c8fa9",
+		borderRadius: 8
+	},
 }
+
+const repositories = "repositories"
+const explore = "explore"
 
 const NavBar = () => {
 	const loc = useHistory();
@@ -37,19 +46,42 @@ const NavBar = () => {
 		loc.push('/')
 	}
 
+	const getActiveNavItemStyle = (who) => {
+		switch (who) {
+			case repositories:
+				if (loc.location.pathname === "/" + who) {
+					return styles.activeNavItemStyle
+				}
+
+				return styles.navButtonStyle
+			case explore:
+				if (loc.location.pathname === "/" + who) {
+					return styles.activeNavItemStyle
+				}
+
+				return styles.navButtonStyle
+			default:
+				return styles.navButtonStyle
+		}
+	}
+
+	const handleNavigation = (where) => {
+		loc.push(where)
+	}
+
 
 	return <Menu style={styles.menuStyle} mode="horizontal">
-		<Menu.Item style={styles.border} key="openregistry" icon={<img src={parachute} style={{ height: 50 }} alt={""} />}>
-			<Button size="small" type="link" style={styles.navButtonStyle} onClick={() => loc.push('/repositories')}>OpenRegistry</Button>
+		<Menu.Item style={styles.border} key="open-registry" icon={<img src={parachute} style={{ height: 50 }} alt={""} />}>
+			<Button size="small" type="link" style={styles.navButtonStyle} onClick={() => handleNavigation(repositories)}>OpenRegistry</Button>
 		</Menu.Item>
 		<Menu.Item style={styles.autoComplete} key="Search">
 			<Complete />
 		</Menu.Item>
-		<Menu.Item style={styles.border} key="Repositories">
-			<Button size="small" type="link" onClick={() => loc.push('/repositories')} style={styles.navButtonStyle}>Repositories</Button>
+		<Menu.Item style={getActiveNavItemStyle(repositories)} key="Repositories">
+			<Button size="small" type="link" onClick={() => handleNavigation(repositories)} style={getActiveNavItemStyle(repositories)}>Repositories</Button>
 		</Menu.Item>
-		<Menu.Item style={styles.border} key="Explore">
-			<Button size="small" type="link" onClick={() => loc.push('/explore')} style={styles.navButtonStyle}>Explore</Button>
+		<Menu.Item style={getActiveNavItemStyle(explore)} key="Explore">
+			<Button size="small" type="link" onClick={() => handleNavigation(explore)} style={getActiveNavItemStyle(explore)}>Explore</Button>
 		</Menu.Item>
 		<Menu.Item style={styles.border} key="Help">
 			<Button
@@ -66,7 +98,5 @@ const NavBar = () => {
 			<Button size="small" icon={<UserOutlined />} type="link" onClick={logOut} style={styles.navButtonStyle}>Log Out</Button>
 		</Menu.Item>
 	</Menu>
-
 }
-
 export default NavBar;

@@ -38,7 +38,7 @@ with a colon, like the \`:id\` param defined in`
                             })
                         }
                     </div>
-                    <Text strong copyable code>{`docker pull ${username}/${imagename}`}</Text>
+                    <Text strong copyable code>{`docker pull openregistry.dev/${username}/${imagename}`}</Text>
                 </div>
             </Card>
             <Card style={{width: "90%", marginTop: "2%"}}>

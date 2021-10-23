@@ -1,7 +1,7 @@
 import NavBar from "../components/menu";
 import {Typography, Badge, Card} from "antd";
 import ReactMarkdown from "react-markdown";
-import dc from "../styles/pictures/dc.png";
+import containerLogo from "../styles/pictures/container-logo.png";
 import {useParams} from "react-router-dom";
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -19,20 +19,20 @@ with a colon, like the \`:id\` param defined in`
         <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
             <Card style={{width: "90%", marginTop: "2%"}}>
                 <div style={{flexDirection: "row", display: "flex", alignItems: "center"}}>
-                    <img src={dc} alt="container-image-logo"/>
-                    <div>
-                        <h2 style={{fontWeight: "bold"}}>{username+"/"+imagename}</h2>
+                    <img src={containerLogo} style={{height: 100, }} alt="container-image-logo"/>
+                    <div style={{marginLeft: "2%"}}>
+                        <Typography.Title level={2}>{username+"/"+imagename}</Typography.Title>
                         <p>{desc}</p>
                     </div>
                 </div>
 
-                <div style={{display: "flex", justifyContent: "space-between"}}>
+                <div style={{display: "flex", justifyContent: "space-between", marginTop: "1%"}}>
                     <div>
                         {
                             tags.map((t) => {
                                 return <Badge
                                     count={t}
-                                    style={{ backgroundColor: 'rgba(152,171,196,0.98)', color: "black", fontWeight: "500"}}
+                                    style={{ margin: "0 2px", backgroundColor: '#7c8fa9', color: "#fff", fontWeight: "bold"}}
 
                                 />
                             })

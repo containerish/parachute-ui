@@ -35,8 +35,8 @@ const styles = {
 	},
 }
 
-const repositories = "repositories"
-const explore = "explore"
+const repositories = "/repositories"
+const explore = "/explore"
 
 const NavBar = () => {
 	const loc = useHistory();
@@ -49,13 +49,13 @@ const NavBar = () => {
 	const getActiveNavItemStyle = (who) => {
 		switch (who) {
 			case repositories:
-				if (loc.location.pathname === "/" + who) {
+				if (loc.location.pathname === who) {
 					return styles.activeNavItemStyle
 				}
 
 				return styles.navButtonStyle
 			case explore:
-				if (loc.location.pathname === "/" + who) {
+				if (loc.location.pathname === who) {
 					return styles.activeNavItemStyle
 				}
 

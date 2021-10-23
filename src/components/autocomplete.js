@@ -51,6 +51,7 @@ const renderItem = (title, count) => ({
 
 const Complete = ({options=[]}) => (
     <AutoComplete
+        disabled
         dropdownClassName="certain-category-search-dropdown"
         dropdownMatchSelectWidth={500}
         style={{

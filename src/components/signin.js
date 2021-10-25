@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../styles/landingpage.css'
 import { Form, Input, Button, Typography, message, Alert } from 'antd';
-import { LoadingOutlined, CheckCircleTwoTone, CloseCircleOutlined, } from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import { useHistory, } from "react-router";
 import axios from 'axios';
 
@@ -64,7 +64,7 @@ const SignIn = ({ handleSignUp, handleModalClose, }) => {
 			loc.push('/repositories')
 		}).catch(err => {
 			setShowLoader(false)
-			setSignInError(err.response.data.error)
+			setSignInError(err.message)
 			setShowNotification(true)
 		})
 	}

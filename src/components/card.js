@@ -9,13 +9,15 @@ export const Tile = ({ repoName, author, updatedAt }) => {
 			<Card
 				hoverable
 				headStyle={{ background: 'rgba(204,215,227,0.61)', fontWeight: "bold" }}
-				title={author + "/" + repoName}
+				title={<Typography.Title level={4}>
+					{author + "/" + repoName}
+				</Typography.Title>}
 				bordered={true}
 				style={{ width: "100%", borderRadius: 8 }}
 				extra={(
 					<div>
 						<Text style={{ marginRight: "12px" }} copyable={{
-							text: `docker pull ${author}/${repoName}`,
+							text: `docker pull openregistry.dev/${author}/${repoName}`,
 							tooltips: [<Tooltip>copy pull command</Tooltip>]
 						}}
 						/>
@@ -24,8 +26,8 @@ export const Tile = ({ repoName, author, updatedAt }) => {
 					</div>
 				)}
 			>
-				<p>Author: {author}</p>
-				<p>Updated At: {updatedAt}</p>
+				<Typography.Paragraph style={{fontWeight: "bold"}}>Author: {author}</Typography.Paragraph>
+				<Typography.Text>Updated At: {updatedAt}</Typography.Text>
 			</Card>
 		</div>
 	)

@@ -1,4 +1,4 @@
-import { Input, AutoComplete } from 'antd';
+import {Input, AutoComplete, Tooltip} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const renderTitle = (title) => (
@@ -50,17 +50,19 @@ const renderItem = (title, count) => ({
 // ];
 
 const Complete = ({options=[]}) => (
-    <AutoComplete
-        disabled
-        dropdownClassName="certain-category-search-dropdown"
-        dropdownMatchSelectWidth={500}
-        style={{
-            width: "100%",
-        }}
-        options={options}
-    >
-        <Input.Search size="large" placeholder="Search for container images" />
-    </AutoComplete>
+    <Tooltip title="coming soon">
+        <AutoComplete
+            disabled
+            dropdownClassName="certain-category-search-dropdown"
+            dropdownMatchSelectWidth={500}
+            style={{
+                width: "100%",
+            }}
+            options={options}
+        >
+            <Input.Search size="large" placeholder="Search for container images" />
+        </AutoComplete>
+    </Tooltip>
 );
 
 export default Complete;

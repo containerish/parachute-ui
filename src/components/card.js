@@ -7,7 +7,6 @@ export const Tile = ({ repoName, author, updatedAt }) => {
 		<div
 			style={{ background: '#ccd7e3', width: "90%", borderRadius: 8, boxShadow: "0.7px 1.4px 1.4px hsl(0deg 0% 0% / 0.48)", margin: "0.5% 0" }}>
 			<Card
-				hoverable
 				headStyle={{ background: 'rgba(204,215,227,0.61)', fontWeight: "bold" }}
 				title={<Typography.Title level={4}>
 					{author + "/" + repoName}

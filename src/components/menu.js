@@ -1,10 +1,9 @@
-import { Button, Menu } from "antd";
+import {Button, Menu, Tooltip} from "antd";
 import parachute from "../styles/pictures/parachute.png";
 
 import Complete from "./autocomplete";
 import { UserOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import React from "react";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
 const styles = {

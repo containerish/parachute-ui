@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Text from "antd/es/typography/Text";
 
 export const Tile = ({ repoName, author, updatedAt }) => {
+	const dockerEndpoint = new URL(process.env.REACT_APP_API_BASE_URL)
+
 	return (
 		<div
 			style={{ background: '#ccd7e3', width: "90%", borderRadius: 8, boxShadow: "0.7px 1.4px 1.4px hsl(0deg 0% 0% / 0.48)", margin: "0.5% 0" }}>
@@ -16,7 +18,7 @@ export const Tile = ({ repoName, author, updatedAt }) => {
 				extra={(
 					<div>
 						<Text style={{ marginRight: "12px" }} copyable={{
-							text: `docker pull openregistry.dev/${author}/${repoName}`,
+							text: `docker pull ${dockerEndpoint.hostname}/${author}/${repoName}`,
 							tooltips: [<Tooltip>copy pull command</Tooltip>]
 						}}
 						/>

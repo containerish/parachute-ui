@@ -10,15 +10,16 @@ export const CustomTable = (
 		loading={loading}
 		pagination={pagination}
 		bordered
-		dataSource={data}
+		dataSource={data && data.Manifest ? data.Manifest.config : []}
 		onChange={onChange}
 	>
 		<Column title="Tag" dataIndex="reference" key="reference" />
-		<Column title="Skylink (Skynet)" dataIndex="skynetLink" key="skynetLink" render={(text, record, index) => {
+		<Column title="Digest" dataIndex="digest" key="digest" render={(text, record, index) => {
+			return <Typography.Text code>{text}</Typography.Text>
+		}} />
+		<Column title="Container Image Manifest" dataIndex="skynetLink" key="skynetLink" render={(text, record, index) => {
 			return <Button type="link" onClick={() => window.open(`https://siasky.net/${text.replace('sia://', '')}`)}>Link</Button>
 		}} />
-		{/*<Column title="Pulled" dataIndex="pulled" key="digest"/>*/}
-		{/*<Column title="Pushed" key="action" dataIndex="mediatype" />*/}
-		<Column title="Size (in MBs)" key="size" dataIndex="size" />
+
 	</Table>
 }

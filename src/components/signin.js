@@ -85,7 +85,7 @@ const SignIn = ({ handleSignUp, handleModalClose, }) => {
 				</Form.Item>
 				<Form.Item
 					style={{ fontWeight: "bold" }}
-					label={"Email/Username"}
+					label={"Email"}
 					name={"email"}
 					rules={[
 						{
@@ -97,7 +97,7 @@ const SignIn = ({ handleSignUp, handleModalClose, }) => {
 						type="email"
 						value={email}
 						onChange={(e) => handleEmail(e.target.value)}
-						placeholder="email/username"
+						placeholder="email"
 					/>
 				</Form.Item>
 				<Form.Item

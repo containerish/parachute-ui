@@ -25,7 +25,7 @@ npm install # or yarn install
 
 3. Make a copy of the `env.example` file:
 ```sh
-cp env.example .env
+cp .env.example .env
 ```
 
 > Note that here you must make sure you have the **OpenRegistry Backend** running on your local system.

@@ -1,3 +1,9 @@
+# ⚠️ THIS REPOSITORY IS DEPRECATED ⚠️
+
+Please refrain from using this repository as we have migrated our web app to a new repository: [openregistry-web](https://github.com/containerish/openregistry-web)
+
+--------------------------------------------------------------------------------------------------------------------------
+
 # Parachute By OpenRegistry
 
 ## What is this project:
